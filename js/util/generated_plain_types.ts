@@ -1,4 +1,4 @@
-// Auto-generated file (content hash e392acbca346c32a) -- do not modify
+// Auto-generated file (content hash 4b06d2723f350f2c) -- do not modify
 
 export type AclObjectTypeType =
   /**
@@ -2752,9 +2752,9 @@ export type PromptParserNullishType = {
      */
     boolean | undefined;
 } | null;
-export type PreprocessorSavedFunctionIdType =
+export type PreprocessorIdType =
   /**
-   * For prompt-backed functions: the preprocessor function to use for trace template variables. Set to null to disable preprocessing. If omitted, the traced project's default preprocessor will be used, falling back to the global 'thread' preprocessor.
+   * For prompt-backed functions: the saved, global, or inline preprocessor to use for trace template variables. Set to null to disable preprocessing. If omitted, the traced project's default preprocessor will be used, falling back to the global 'thread' preprocessor.
    */
   | {
       /**
@@ -2781,6 +2781,18 @@ export type PreprocessorSavedFunctionIdType =
        */
       function_type: "preprocessor";
     }
+  | {
+      /**
+       * @enum inline
+       */
+      type: "inline";
+      /**
+       * The complete JavaScript preprocessor implementation, including its handler.
+       *
+       * @minLength 1
+       */
+      code: string;
+    }
   | null;
 export type PromptDataNullishType =
   /**
@@ -2793,7 +2805,7 @@ export type PromptDataNullishType =
       prompt: PromptBlockDataNullishType;
       options: PromptOptionsNullishType;
       parser: PromptParserNullishType;
-      preprocessor: PreprocessorSavedFunctionIdType;
+      preprocessor: PreprocessorIdType;
       tool_functions: Array<SavedFunctionIdType> | null;
       /**
        * @enum mustache, nunjucks, none
@@ -3521,7 +3533,7 @@ export type PromptDataType = Partial<{
   prompt: PromptBlockDataNullishType;
   options: PromptOptionsNullishType;
   parser: PromptParserNullishType;
-  preprocessor: PreprocessorSavedFunctionIdType;
+  preprocessor: PreprocessorIdType;
   tool_functions: Array<SavedFunctionIdType> | null;
   /**
    * @enum mustache, nunjucks, none
@@ -7105,6 +7117,10 @@ export type ViewType = {
         | null
       )
     | undefined;
+  starred?: /**
+     * Whether the view is starred in its project
+     */
+    boolean | undefined;
   created?:
     | /**
      * Date of view creation
